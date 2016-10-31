@@ -19,14 +19,14 @@ thm <- theme(axis.line = element_blank(), axis.text.x = element_blank(),
 
 
 # Import data with commuters and midpoints of polygons
-flows<-read.csv(file="C:/Users/zxv412/Documents/01_ku/09-symposium-2016/presentations/spatial-data/programs/flows.csv")
+flows<-read.csv(file="data/flows.csv")
 
 # Calculate distance between midpoints
 flows$dist<-sqrt((flows$x_home-flows$x_work)^2+(flows$y_home-flows$y_work)^2)
 
 # Define cities to mark
 cities<-flows[1:97,c(2,5,6)]
-cph<-subset(cities,V2=="København")
+cph<-subset(cities,V2=="KÃ¸benhavn")
 ode<-subset(cities,V2=="Odense")
 aal<-subset(cities,V2=="Aalborg")
 aar<-subset(cities,V2=="Aarhus")
@@ -38,7 +38,7 @@ quiet<-list(xquiet, yquiet)
 
 
 # Merge all polygons
-dk<-readShapePoly("C:/Users/zxv412/Documents/01_ku/09-symposium-2016/presentations/spatial-data/programs/Testdata for Afstemningsomraader/opstillingskreds")
+dk<-readShapePoly("data/opstillingskreds")
 dk@data$help<-1
 test<-unionSpatialPolygons(dk,ID=dk@data$help)
 dt<-data.frame(help=1)
@@ -53,7 +53,7 @@ blue1<-data.frame(district=1,pct=1)
 
 mycol<-rgb(4,32,41,max=255)
 
-pdf(file="C:/Users/zxv412/Documents/01_ku/09-symposium-2016/presentations/spatial-data/graphs/flows.pdf",15,15)
+pdf(file="outputs/flows.pdf",15,15)
 
 ggplot()+
 geom_map(data=blue1,aes(map_id=district,fill=pct),map=test1)+expand_limits(x=test1$long,y=test1$lat)+
