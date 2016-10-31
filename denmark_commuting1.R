@@ -4,15 +4,14 @@
 # Administrative borders corresponding to municipalities are avilable from kortforsyningen
 #################################################################################################################################################
  
-
 # Load required packages
 if (!require("maptools")){install.packages("maptools")}
 if (!require("leaflet")){install.packages("leaflet")}
 
 # Create popup text
-pendler_to<-read.csv("C:/Users/zxv412/Documents/02_omicron/commuting-for-roskilde/pendler1.csv")
+pendler_to<-read.csv("data/pendler1.csv")
 names(pendler_to)<-c("home","work","n")
-pendler_from<-read.csv("C:/Users/zxv412/Documents/02_omicron/commuting-for-roskilde/pendler2.csv")
+pendler_from<-read.csv("data/pendler2.csv")
 names(pendler_from)<-c("home","work","n")
 
 municipalities<-unique(pendler_to$home)
@@ -55,14 +54,9 @@ commuting[i]<-going_out[i]+working_in[i]
 commuting<-data.frame(id=municipalities,text=popup_all,n=commuting)
 
 # Merge popup text and number for coloring with .shp file
-commuting$id<-gsub("Høje-Taastrup","Høje Taastrup",commuting$id)
-commuting$id<-gsub("Århus","Aarhus",commuting$id)
-#kommuner<-readShapePoly("C:/Users/zxv412/Documents/DAGIREF_SHAPE_UTM32-EUREF89/ADM/KOMMUNE")
-#kommuner<-merge(kommuner,commuting,by.x="KOMNAVN",by.y="id")
-#proj4string(kommuner)<-CRS("+proj=utm +zone=32 +datum=WGS84")
-#kommuner<-spTransform(kommuner,CRS("+proj=longlat +datum=WGS84"))
-
-kommuner<-readShapePoly("C:/Users/zxv412/Documents/02_omicron/environmental-statistics/spatial-stats-presentation/shape-files/de_98_kommunegraenser_i_danmark")
+commuting$id<-gsub("HÃ¸je-Taastrup","HÃ¸je Taastrup",commuting$id)
+commuting$id<-gsub("Ã…rhus","Aarhus",commuting$id)
+kommuner<-readShapePoly("data/de_98_kommunegraenser_i_danmark")
 kommuner<-merge(kommuner,commuting,by.x="STEDNAVN",by.y="id")
 
 # Create interactive map
