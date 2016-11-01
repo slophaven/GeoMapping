@@ -13,7 +13,7 @@ if (!require("Hmisc")){install.packages("Hmisc")}
 tmpdir<-tempdir()
 
 # Import data for Guinea and transform coordinates to OSM
-gin.cases<-read.csv("C:/Users/zxv412/Documents/02_omicron/web-design/omicron-web-design/ebola-outbreak/guinea1.csv",header=T)
+gin.cases<-read.csv("data/guinea1.csv",header=T)
 
 url<-'http://www.maplibrary.org/library/stacks/Africa/Guinea/GIN_admin_SHP.zip'
 file<-basename(url)
@@ -35,7 +35,7 @@ gin.adm.trans<-spTransform(gin.adm,osm())
 gin.outline.trans<-spTransform(gin.outline,osm())
 
 # Import data for Liberia and transform coordinates to OSM
-lib.cases<-read.csv("C:/Users/zxv412/Documents/02_omicron/web-design/omicron-web-design/ebola-outbreak/liberia1.csv",header=T)
+lib.cases<-read.csv("data/liberia1.csv",header=T)
 
 url<-'http://www.maplibrary.org/library/stacks/Africa/Liberia/LIB-level_1_SHP.zip'
 
@@ -59,7 +59,7 @@ lib.outline.trans<-spTransform(lib.outline,osm())
 
 
 # Import data for Sierra Leone and transform coordinates to OSM
-sil.cases<-read.csv("C:/Users/zxv412/Documents/02_omicron/web-design/omicron-web-design/ebola-outbreak/sierra-leone1.csv",header=T)
+sil.cases<-read.csv("data/sierra-leone1.csv",header=T)
 
 url<-'http://www.maplibrary.org/library/stacks/Africa/Sierra%20Leone/SIL_admin_SHP.zip'
 
@@ -170,14 +170,14 @@ scale_fill_manual(values=mycol)+thm
 
 
 file<-gsub(" ", "",months[jj],fixed=TRUE)
-ggsave(paste("C:/Users/zxv412/Desktop/temp1/",file,".png",sep=""),width=4,height=4)
+ggsave(paste("outputs/",file,".png",sep=""),width=4,height=4)
 
 }
 
 ##############################################################################################################################
 # Creating a color label
 ##############################################################################################################################
-png(file="C:/Users/zxv412/Desktop/temp1/label.png",width=1100,height=40)
+png(file="outputs/label.png",width=1100,height=40)
 par(mar=c(0,0,0,0))
 plot(c(0,26.5),c(0,1),axes=F,xlab="",ylab="",type="n")
 
