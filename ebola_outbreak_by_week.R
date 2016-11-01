@@ -3,9 +3,9 @@
 # The raw data can be obtained via http://apps.who.int/gho/data/node.ebola-sitrep.ebola-country?lang=en
 #########################################################################################################################
 
-gui<-read.csv(file="C:/Users/zxv412/Documents/02_omicron/web-design/omicron-web-design/ebola-outbreak/guinea2.csv")
-lib<-read.csv(file="C:/Users/zxv412/Documents/02_omicron/web-design/omicron-web-design/ebola-outbreak/liberia2.csv")
-sil<-read.csv(file="C:/Users/zxv412/Documents/02_omicron/web-design/omicron-web-design/ebola-outbreak/sierra-leone2.csv")
+gui<-read.csv(file="data/guinea2.csv")
+lib<-read.csv(file="data/liberia2.csv")
+sil<-read.csv(file="data/sierra-leone2.csv")
 
 par(xpd=TRUE,cex=1.2,mar=c(2,4,1,2))
 barplot(gui$sum,col="#31a354",ylim=c(0,250),ylab="Number of laboratory confirmed ebola cases")
